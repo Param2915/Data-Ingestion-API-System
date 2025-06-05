@@ -33,4 +33,6 @@ def add_ingestion_request(ingestion_id, ids, priority, store):
 
     threading.Thread(target=enqueue_batches, daemon=True).start()
 
-threading.Thread(target=worker_loop, args=(Store(),), daemon=True).start()
+def start_worker(store):
+    """Start the worker thread - called from main.py"""
+    threading.Thread(target=worker_loop, args=(store,), daemon=True).start()
